@@ -2,27 +2,24 @@ name: Build and deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]  # Запускать при пуше в ветку main
+    branches:
+      - main  # Пушим из основной ветки
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest  # Операционная система для запуска (ubuntu)
+    runs-on: ubuntu-latest
 
     steps:
-      # Шаг 1: Проверяем репозиторий
-      - name: Checkout repository 🛎️
-        uses: actions/checkout@v2.3.1
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      # Шаг 2: Устанавливаем зависимости и строим проект
-      - name: Install dependencies and build 🔧
+      - name: Install dependencies and build
         run: |
           npm install
           npm run build
 
-      # Шаг 3: Деплой на GitHub Pages
-      - name: Deploy to GitHub Pages 🚀
+      - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
           branch: gh-pages  # Деплой на ветку gh-pages
-          folder: dist  # Указываем папку, куда билдит проект
-          token: ${{ secrets.GHTOKEN }}  # Используем секрет с токеном
+          folder: dist  # Папка с собранным проектом для деплоя
