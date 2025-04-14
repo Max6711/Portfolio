@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/dist/",
+    "build": "vite build --base=/portfolio/",
     "preview": "vite preview",
     "start": "node server.js"
   },
