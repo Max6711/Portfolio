@@ -2,24 +2,22 @@ name: Build and deploy to GitHub Pages
 
 on:
   push:
-    branches:
-      - main  # Пушим из основной ветки
+    branches: [main]
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
 
-      - name: Install dependencies and build
+      - name: Install and build 🔧
         run: |
           npm install
           npm run build
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
-          branch: gh-pages  # Деплой на ветку gh-pages
-          folder: dist  # Папка с собранным проектом для деплоя
+          branch: gh-pages
+          folder: dist
